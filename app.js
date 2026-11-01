@@ -109,7 +109,7 @@ function renderUniversidades() {
       <h3>O que pedem</h3>
       <ul>${u.exige.map(e => `<li>${esc(e)}</li>`).join("")}</ul>
       <h3>Bolsas ligadas</h3><p>${esc(u.bolsas)}</p>
-      <p class="links">${links([["Página oficial", u.link]])}</p>
+      <p class="links">${links([["Página oficial", u.link], ...(u.links || [])])}</p>
       ${nota("uni-" + u.id)}
     </div>`).join("")}</div>`;
 }

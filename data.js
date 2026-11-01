@@ -158,8 +158,10 @@ const UNIVERSIDADES = [
       "Recomendação: 1–2 cartas opcionais, enviadas pelo professor no sistema; não pontuam",
       "Formulário com média, nota final, habilidades em TI (Stata, Python), experiência, GRE/GMAT, outras línguas",
       "Sem prova de entrada: avaliação de mérito acadêmico (70) + coerência curricular (30), mínimo 60",
+      "Anuidade: brasileiro pode optar pela taxa fixa reduzida para países fora da OCDE — €1.200 + €157,04 ≈ €1.357/ano (2026/27), em vez de até €3.060 (máximo do AEM em 2025/26). Basta declarar no portal da ER.GO que a renda e os bens da família estão só fora da Itália e aceitar a 'Flat Tax'; não exige documentos de renda",
     ],
-    bolsas: "4 bolsas do departamento de €4.608 (1 ano) para os primeiros dos intakes 1 e 2 com nota ≥ 65. Além disso, International Talents @Unibo (GRE) e ER.GO.",
+    bolsas: "4 bolsas do departamento de €4.608 (1 ano) para os primeiros dos intakes 1 e 2 com nota ≥ 65. Além disso, International Talents @Unibo (GRE), que dá isenção total da anuidade, e ER.GO. Optar pela taxa fixa não impede de enviar os documentos de renda para disputar a bolsa do GRE.",
+    links: [["Taxa fixa reduzida (Unibo)", "https://www.unibo.it/en/study/enrolment-fees-and-other-procedures/degree-programmes/tuition-fees-and-exemptions/reduced-fixed-fee-for-citizens-of-particularly-poor-and-developing-countries-or-non-eu-non-oecd-countries"], ["Lista de países fora da OCDE 2026", "https://www.unibo.it/en/attachments/nonOECDcountries.pdf/@@download/file/Elenco%20Paesi%20NON%20OCSE%202026.pdf"]],
   },
   {
     id: "veneza", nome: "Università Ca' Foscari Venezia", curso: "Economics, Finance and Sustainability — curriculum Economics-QEM",

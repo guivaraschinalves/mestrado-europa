@@ -103,7 +103,7 @@ const CRONOGRAMA = [
     links: [["Bolsas Ca' Foscari", "https://www.unive.it/pag/19545/?L=0"]] },
   { id: "isee-docs", inicio: "2027-03-01", fim: "2027-05-31", cat: "docs", status: "oficial",
     titulo: "Reunir documentos de renda e patrimônio da família para o ISEE parificato",
-    nota: "Necessário para a bolsa regional (ER.GO / EDISU / ESU) e para a International Talents @Unibo. Tipicamente: composição familiar, renda de cada membro do 2º ano anterior (para 2027/28 → renda de 2025), imóveis e saldos em 31/12/2025. Tudo traduzido para italiano e legalizado (apostila ou consulado italiano). Confira a lista exata no edital de cada agência." },
+    nota: "Necessário para a bolsa regional (ER.GO / EDISU / ESU) e para a International Talents @Unibo. Para quem tem família no exterior vale o ano anterior: para 2027/28 → renda bruta de 2026 de cada adulto (certidão da Receita, informe do empregador ou os 12 holerites), certidão de propriedade do imóvel com a metragem, saldo de financiamento e saldos de investimentos em 31/12/2026, composição familiar e atividade de cada um. Tudo traduzido para italiano e legalizado (apostila ou consulado italiano). Confira a lista exata no edital de cada agência." },
 
   // ---- abril/maio 2027
   { id: "bo-i2-fecha", fim: "2027-04-13", cat: "bologna", status: "estimado", prazo: true,
@@ -218,9 +218,9 @@ const BOLSAS = [
   },
   {
     id: "dsu", grupo: "principais", nome: "Bolsa regional por renda (DSU): ER.GO (Bologna), EDISU Piemonte (Turim), ESU Venezia",
-    valor: "Bolsa em dinheiro + isenção de anuidade; moradia e refeição à parte (valores pelo ISEE e por morar fora ou não)",
+    valor: "ER.GO 2026/27: até €7.171/ano para quem mora fora (integral se ISEE ≤ 2/3 do teto, depois diminui) + isenção de anuidade",
     prazo: "edital em julho; prazo no fim de agosto (ER.GO 24/08/2026)",
-    quem: "Por renda, medida pelo ISEE parificato — calculado com documentos da família no Brasil.",
+    quem: "Por renda (ISEE parificato). Tetos ER.GO 2026/27: ISEE ≤ €25.000 E ISPE ≤ €50.000. Teto nacional (outras regiões podem usar até ele): ISEE ≤ €28.339,88 e ISPE ≤ €61.608,48.",
     atencao: "O trabalho pesado são os documentos brasileiros de renda e patrimônio, traduzidos e legalizados. Comece em março.",
     link: "https://www.er-go.it/",
     extras: [["EDISU Piemonte", "https://www.edisu.piemonte.it/"], ["ESU Venezia", "https://www.esuvenezia.it/"]],
@@ -327,3 +327,4 @@ const OUTRAS = [
     custo: "alto (dezenas de milhares de dólares)", bolsa: "Raras para mestrado; os governos financiam sobretudo doutorado.",
     veredito: "Muito melhores no ranking, mas sem bolsa realista para mestrado.", link: "https://www.nus.edu.sg/" },
 ];
+

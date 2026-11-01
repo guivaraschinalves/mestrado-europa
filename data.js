@@ -26,7 +26,7 @@ const CRONOGRAMA = [
     ref: "Editais 2026/27" },
   { id: "gre-confirmar", inicio: "2026-11-01", fim: "2026-11-20", cat: "bolsas", status: "estimado",
     titulo: "Mandar e-mail para a Unibo confirmando a bolsa do GRE antes de investir no GRE",
-    nota: "Perguntar ao internationaldesk@unibo.it se haverá edição 2027/28 e se a faixa de ISEE (€16–35 mil) continua. Sobre o cálculo, a lei já responde: o DPCM de 9/4/2001 (art. 5, c. 7–8), citado pela ER.GO, manda avaliar renda e bens do exterior 'com as mesmas modalidades' do ISEE italiano (franquias da casa e dos investimentos incluídas), trocando só o valor do imóvel por €500/m². A bolsa do GRE não tem limite de ISPE." },
+    nota: "Perguntar ao internationaldesk@unibo.it: (1) haverá edição 2027/28 e a faixa de ISEE (€16–35 mil) continua? (2) quem ainda não colou grau pode se candidatar, ou o diploma precisa estar concluído no prazo? (3) como o Analytical Writing (0–6) é somado ao Verbal e ao Quant (130–170) — nota bruta ou normalizada? (4) voltará a haver cotas por região, como as 14 bolsas para a América do Sul em 2024/25? Sobre a renda, a lei já responde: o DPCM de 9/4/2001 (art. 5, c. 7–8) manda aplicar as mesmas regras do ISEE italiano, com o imóvel a €500/m²." },
   { id: "gre-plano", inicio: "2026-11-01", fim: "2026-11-15", cat: "provas", status: "oficial",
     titulo: "Montar plano de estudo do GRE e agendar a prova",
     nota: "Para a bolsa International Talents @Unibo: mínimo Verbal+Quant = 290 e Analytical Writing = 3.0; ranking pela soma das 3 seções. Agende com folga para poder refazer.",
@@ -232,10 +232,10 @@ const BOLSAS = [
   },
   {
     id: "unibo-gre", grupo: "gre", nome: "International Talents @Unibo — a bolsa que só depende do GRE",
-    valor: "€6.500/ano por 2 anos + isenção total de taxas (paga ~€157). 30 bolsas em 2025/26",
-    prazo: "edital em janeiro; prazo 30/05/2025 e 30/04/2026 nos últimos ciclos",
-    quem: "Diploma de fora da Itália (qualquer cidadania), menos de 30 anos, nunca ter recebido Unibo Action 2, ISEE entre €16 mil e €35 mil (ou equivalente).",
-    atencao: "Ranking só pela nota do GRE General (soma das 3 seções, peso igual). Mínimos: V+Q ≥ 290 e AW ≥ 3.0. Nota oficial via ETS com código 7850 até o prazo. Pagamento em 6 parcelas condicionadas a créditos (10, 30, 60, 80 CFU). Não acumula com MAECI nem com a bolsa ER.GO; acumula com moradia ER.GO. Se o ISEE da família ficar abaixo de €16 mil, você não é elegível — aí a ER.GO tende a ser melhor.",
+    valor: "€6.500/ano por 2 anos + isenção total de taxas (paga ~€157). 30 bolsas em 2025/26; em 2024/25 eram 56 de €4.500, com 14 reservadas para quem se formou na América do Sul",
+    prazo: "edital em janeiro; prazo 30/04/2024, 30/05/2025 e (provável) 30/04/2026 nos últimos ciclos",
+    quem: "JÁ GRADUADO (a versão italiana, que é a que vale, exige 'aver conseguito il titolo' sob pena de exclusão: formando não serve), diploma de fora da Itália, menos de 30 anos, nunca ter recebido Unibo Action 2, ISEE entre €16 mil e €35 mil (ou equivalente). Não precisa estar admitido no mestrado para se candidatar.",
+    atencao: "Ranking só pela nota do GRE General: soma de Verbal + Quant + Writing, 'cada seção com o mesmo peso' (o edital não diz se normaliza o Writing, que vai de 0 a 6). Mínimos para entrar no ranking: V+Q ≥ 290 e AW ≥ 3.0 — isso é só o piso (~percentil 15–20). Empate: vence o mais novo. As notas de corte não são públicas (ranking sai no Studenti Online, com login). Nota oficial via ETS, código 7850, até o prazo. A bolsa só é paga depois da admissão e matrícula em qualquer mestrado da Unibo naquele ano; parcelas condicionadas a créditos (10, 30, 60, 80 CFU). Não acumula com MAECI nem com a bolsa ER.GO; acumula com moradia ER.GO.",
     link: "https://bandi.unibo.it/s/amministrazione-generale/international-talents-unibo-borse-di-studio-per-studentesse-e-studenti-internazionali",
   },
   {

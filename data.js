@@ -24,6 +24,9 @@ const CRONOGRAMA = [
     titulo: "Agendar IELTS ou TOEFL (B2 é exigido JÁ na candidatura em Bologna e Turim)",
     nota: "Mínimos 2026/27 — Bologna: IELTS 5.5 / TOEFL iBT 80. Turim: IELTS 5.5 (nenhuma banda abaixo) / TOEFL 69 (nenhuma seção < 17). Ca' Foscari só pede na matrícula, mas a bolsa Honours pontua o certificado. Mire IELTS 6.5+ / TOEFL 90+. Certificado vale 3 anos.",
     ref: "Editais 2026/27" },
+  { id: "gre-confirmar", inicio: "2026-11-01", fim: "2026-11-20", cat: "bolsas", status: "estimado",
+    titulo: "Mandar e-mail para a Unibo confirmando a bolsa do GRE antes de investir no GRE",
+    nota: "Perguntar ao internationaldesk@unibo.it: (1) haverá edição 2027/28? (2) a faixa de ISEE (€16–35 mil) continua? (3) para família no Brasil, as franquias da casa própria e dos investimentos valem? (4) o rendimento de investimentos conta como renda? A página de instruções de renda da edição 2025/26 saiu do ar e não achei o edital 2026/27 público." },
   { id: "gre-plano", inicio: "2026-11-01", fim: "2026-11-15", cat: "provas", status: "oficial",
     titulo: "Montar plano de estudo do GRE e agendar a prova",
     nota: "Para a bolsa International Talents @Unibo: mínimo Verbal+Quant = 290 e Analytical Writing = 3.0; ranking pela soma das 3 seções. Agende com folga para poder refazer.",
@@ -101,16 +104,16 @@ const CRONOGRAMA = [
     titulo: "Ca' Foscari: prazo da bolsa Honours (€10 mil/ano por 2 anos)",
     nota: "2026/27: 31/03/2026. Só para quem se candidatou nas rodadas 1 ou 2. 20 bolsas de mestrado.",
     links: [["Bolsas Ca' Foscari", "https://www.unive.it/pag/19545/?L=0"]] },
-  { id: "isee-docs", inicio: "2027-03-01", fim: "2027-05-31", cat: "docs", status: "oficial",
-    titulo: "Reunir documentos de renda e patrimônio da família para o ISEE parificato",
-    nota: "Necessário para a bolsa regional (ER.GO / EDISU / ESU) e para a International Talents @Unibo. Para quem tem família no exterior vale o ano anterior: para 2027/28 → renda bruta de 2026 de cada adulto (certidão da Receita, informe do empregador ou os 12 holerites), certidão de propriedade do imóvel com a metragem, saldo de financiamento e saldos de investimentos em 31/12/2026, composição familiar e atividade de cada um. Tudo traduzido para italiano e legalizado (apostila ou consulado italiano). Confira a lista exata no edital de cada agência." },
+  { id: "isee-docs", inicio: "2027-02-15", fim: "2027-04-15", cat: "docs", status: "oficial",
+    titulo: "Documentos de renda e patrimônio da família, traduzidos e legalizados (prazo da bolsa do GRE)",
+    nota: "A International Talents @Unibo exige que esses documentos sejam enviados à ER.GO até o mesmo prazo da bolsa (~abr/mai). A declaração de IR de 2027 só sai a partir de março: entregue cedo ou use o informe de rendimentos do empregador (fim de fevereiro). Também serve depois para a bolsa regional. Para quem tem família no exterior vale o ano anterior: para 2027/28 → renda bruta de 2026 de cada adulto (certidão da Receita, informe do empregador ou os 12 holerites), certidão de propriedade do imóvel com a metragem, saldo de financiamento e saldos de investimentos em 31/12/2026, composição familiar e atividade de cada um. Tudo traduzido para italiano e legalizado (apostila ou consulado italiano). Confira a lista exata no edital de cada agência." },
 
   // ---- abril/maio 2027
   { id: "bo-i2-fecha", fim: "2027-04-13", cat: "bologna", status: "estimado", prazo: true,
     titulo: "Bologna: fecha o intake 2 (último aberto a não-UE)" },
   { id: "unibo-gre-prazo", fim: "2027-04-30", cat: "bolsas", status: "estimado", prazo: true,
     titulo: "International Talents @Unibo (GRE): prazo — nota oficial precisa ter chegado",
-    nota: "Prazos anteriores: 30/05/2025 e 30/04/2026. Considere o mais cedo (30/04) até sair o edital. Não acumula com MAECI nem com a bolsa ER.GO (acumula com moradia ER.GO)." },
+    nota: "Prazos anteriores: 30/05/2025 e 30/04/2026. Considere o mais cedo (30/04) até sair o edital. Até essa data: candidatura no Studenti Online + nota oficial do GRE (ETS, código 7850) + documentos de renda da família na ER.GO. A renda é avaliada pela ER.GO com as regras para família no exterior (renda de 2026, patrimônio em 31/12/2026, imóvel a €500/m²). Não acumula com MAECI nem com a bolsa ER.GO (acumula com moradia ER.GO)." },
   { id: "iyt-prazo", fim: "2027-05-11", cat: "bolsas", status: "estimado", prazo: true,
     titulo: "Invest Your Talent in Italy: prazo",
     nota: "2026/27: 11/05/2026. Brasil está na lista de países. Curso em inglês de Economia/Gestão/Engenharia; 9 meses de bolsa + estágio em empresa. Exige graduação concluída na inscrição.",
@@ -286,7 +289,7 @@ const DOCUMENTOS = [
   { id: "d-ingles", doc: "Certificado de inglês B2+", para: "Bologna e Turim (candidatura), Ca' Foscari (matrícula)", obrig: "obrigatório", ate: "2027-01-10" },
   { id: "d-gre", doc: "GRE General (V+Q ≥ 290, AW ≥ 3.0)", para: "International Talents @Unibo", obrig: "obrigatório para a bolsa", ate: "2027-03-31" },
   { id: "d-italiano", doc: "Certificado de italiano B1/B2 (CILS, CELI ou PLIDA)", para: "MAECI (diferencial a confirmar) e vida na Itália", obrig: "desejável", ate: "2027-03-26" },
-  { id: "d-isee", doc: "Documentos de renda/patrimônio da família, traduzidos e legalizados", para: "ER.GO/EDISU/ESU e International Talents", obrig: "obrigatório para as bolsas por renda", ate: "2027-05-31" },
+  { id: "d-isee", doc: "Documentos de renda/patrimônio da família, traduzidos e legalizados", para: "International Talents (GRE) e depois ER.GO/EDISU/ESU", obrig: "obrigatório para a bolsa do GRE", ate: "2027-04-15" },
 ];
 
 // ---------------------------------------------------------------------------

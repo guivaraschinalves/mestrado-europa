@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mestrado em Economia — Europa 2027</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Mestrado em Economia — 2027/28</h1>
+    <p class="sub">Bologna · Veneza · Turim, bolsas e alternativas. O que você marca aqui fica salvo neste navegador.</p>
+    <div id="progresso"></div>
+    <nav id="abas">
+      <button data-aba="painel" class="ativa">Painel</button>
+      <button data-aba="cronograma">Cronograma</button>
+      <button data-aba="universidades">Universidades</button>
+      <button data-aba="bolsas">Bolsas</button>
+      <button data-aba="documentos">Documentos</button>
+      <button data-aba="outras">Outras opções</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="painel" class="aba ativa"></section>
+    <section id="cronograma" class="aba"></section>
+    <section id="universidades" class="aba"></section>
+    <section id="bolsas" class="aba"></section>
+    <section id="documentos" class="aba"></section>
+    <section id="outras" class="aba"></section>
+  </main>
+
+  <footer>
+    <p><span class="tag oficial">oficial</span> tirado do edital ou da página da universidade (do ano indicado).
+       <span class="tag estimado">estimado</span> projeção para 2027/28 a partir do ciclo anterior — confirme quando o edital sair.</p>
+    <p id="ref"></p>
+    <p class="backup">
+      <button id="exportar">Baixar backup do progresso</button>
+      <label class="botao">Restaurar backup <input type="file" id="importar" accept="application/json" hidden></label>
+    </p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

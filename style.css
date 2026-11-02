@@ -168,3 +168,28 @@ h3.sub.urgente { color: var(--laranja); } h3.sub.urgente .qtd { background: var(
 .tl-barra.provas, .tl-barra.docs { opacity: .85; }
 .frente-nome { white-space: normal; overflow: visible; overflow-wrap: anywhere; }
 @media (max-width: 900px) { header { position: static; } }
+
+/* ===== Carta de motivação ===== */
+.carta-grade { display: grid; grid-template-columns: 1.6fr 1fr; gap: 12px; align-items: start; }
+@media (max-width: 900px) { .carta-grade { grid-template-columns: 1fr; } }
+.carta-topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.carta-topo label { font-size: .85rem; color: var(--suave); display: flex; gap: 6px; align-items: center; }
+.carta-topo input { font: inherit; padding: 4px 8px; border: 1px solid var(--linha); border-radius: 6px; background: var(--fundo); color: var(--texto); min-width: 200px; }
+#carta-texto { min-height: 460px; font-family: Georgia, "Times New Roman", serif; font-size: 1rem; line-height: 1.6; }
+.contador { font-size: .95rem; } .contador b { font-size: 1.3rem; }
+.contador.ok b { color: var(--verde); } .contador.limite b { color: var(--laranja); } .contador.acima b { color: var(--vermelho); }
+#carta-contador { display: flex; align-items: center; gap: 10px; }
+.mini.largo { width: 140px; display: inline-block; }
+.mini span.ok { background: var(--verde); } .mini span.limite { background: var(--laranja); } .mini span.acima { background: var(--vermelho); }
+.carta-acoes { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
+.carta-acoes button, #sortear, .versao button { font: inherit; font-size: .88rem; padding: 5px 12px; border: 1px solid var(--linha); border-radius: 6px; background: var(--cartao); color: var(--texto); cursor: pointer; }
+.versoes { margin-top: 8px; font-size: .88rem; } .versao { display: flex; gap: 8px; align-items: center; padding: 4px 0; }
+.analise { display: grid; grid-template-columns: 1fr 1.3fr; gap: 16px; margin-top: 14px; border-top: 1px solid var(--linha); padding-top: 10px; }
+@media (max-width: 600px) { .analise { grid-template-columns: 1fr; } }
+.analise h4 { margin: 4px 0 6px; font-size: .85rem; }
+.cliche { display: inline-block; background: #fde8e6; color: var(--vermelho); border-radius: 4px; padding: 1px 6px; margin: 2px; font-size: .82rem; }
+td.nao, b.nao { color: var(--vermelho); }
+ol.blocos { padding-left: 18px; margin: 0; } ol.blocos li { margin-bottom: 8px; font-size: .92rem; }
+ul.checklist { list-style: none; padding: 0; margin: 0; } ul.checklist li { padding: 4px 0; font-size: .92rem; } ul.checklist label { display: flex; gap: 8px; align-items: flex-start; }
+.sorteada { font-weight: 600; color: var(--azul); margin-left: 8px; }
+.perguntas details { border-bottom: 1px solid var(--linha); padding: 6px 0; } .perguntas summary { cursor: pointer; }

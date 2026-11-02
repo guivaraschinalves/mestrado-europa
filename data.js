@@ -373,3 +373,57 @@ const JANELAS = [
   { cat: "visto", nome: "Universitaly (pré-matrícula)", de: "2027-04-01", ate: "2027-07-15" },
   { cat: "visto", nome: "Visto", de: "2027-07-01", ate: "2027-08-31" },
 ];
+
+// ---------------------------------------------------------------------------
+// Espaço de treino da carta de motivação (só o roteiro fica aqui; o texto
+// que você escreve fica salvo no navegador, nunca no repositório)
+// ---------------------------------------------------------------------------
+const CARTA = {
+  destinos: [
+    { id: "maeci", nome: "MAECI", limite: 500 },
+    { id: "cf", nome: "Ca' Foscari (QEM)", limite: 0 },
+    { id: "turim", nome: "Turim (Economics)", limite: 0 },
+    { id: "bologna", nome: "Bologna (opcional)", limite: 0 },
+  ],
+  blocos: [
+    { nome: "Abertura", palavras: 50, guia: "Uma cena ou problema econômico concreto que move você. Corte frases como 'I am writing to express my interest'." },
+    { nome: "Formação", palavras: 90, guia: "Curso, disciplinas que importam, TCC (pergunta, método, resultado) e o intercâmbio — só o que você usaria no mestrado." },
+    { nome: "Experiência e projetos", palavras: 100, guia: "O trabalho mais relevante com resultado e números (alcance, frequência, ferramentas). Estágios antigos cabem numa frase." },
+    { nome: "Por que este curso", palavras: 90, guia: "Um curso só. Cite 1–2 disciplinas, professores ou centros reais do programa e ligue ao que falta na sua formação." },
+    { nome: "Por que a Itália", palavras: 70, guia: "Razões econômicas e acadêmicas atuais + laço pessoal em uma frase + seu esforço com o italiano." },
+    { nome: "Objetivos e retorno", palavras: 70, guia: "Cargo ou instituição concreta depois do mestrado e como você vira ponte Brasil–Itália." },
+    { nome: "Fechamento", palavras: 20, guia: "Uma frase que amarra a abertura ao objetivo. Sem 'turning point' ou 'dream'." },
+  ],
+  checklist: [
+    "Conta a minha história pessoal (FAQ MAECI)",
+    "Mostra minha formação (FAQ MAECI)",
+    "Deixa claros meus interesses acadêmicos (FAQ MAECI)",
+    "Explica por que estudar na Itália (FAQ MAECI)",
+    "Diz o objetivo e as metas do projeto de estudo (FAQ MAECI)",
+    "Conversa com os objetivos da bolsa: cooperação, economia italiana no mundo, língua e cultura",
+    "Fala de UM curso, com algo específico dele",
+    "Passa no teste da troca (não serve para outra universidade/país)",
+    "Cada frase aguenta 2 minutos de pergunta na entrevista",
+    "Bate com o CV e o histórico",
+    "Sem clichês (veja o detector ao lado)",
+    "Revisada por outra pessoa",
+  ],
+  cliches: [
+    "i am writing to express", "deep interest", "passion", "passionate", "since i was a child", "since childhood",
+    "dream", "turning point", "unique opportunity", "broaden my horizons", "broadened my", "profoundly",
+    "rich culture", "beautiful country", "art and food", "invaluable", "real economic value", "make a difference",
+    "aligns closely", "i believe", "hardworking", "dedicated", "eager to",
+  ],
+  perguntas: [
+    "Por que a Itália, e não Portugal, Espanha ou Alemanha?",
+    "Por que este curso e esta universidade?",
+    "Explique seu TCC: pergunta, método e resultado. O que faria diferente?",
+    "O que você faz no trabalho, no dia a dia? Dê um exemplo de análise sua.",
+    "O que pretende fazer depois do mestrado? Vai voltar ao Brasil?",
+    "Que relação você vê entre as economias brasileira e italiana?",
+    "Como a política monetária do BCE afeta a Itália de forma diferente da Alemanha?",
+    "Como está o seu italiano? Apresente-se em italiano em 30 segundos.",
+    "O que aprendeu no intercâmbio em Coimbra que vai usar na Itália?",
+    "Se não ganhar a bolsa, como pretende se manter?",
+  ],
+};

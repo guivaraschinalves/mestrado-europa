@@ -6,6 +6,7 @@ function carregar() {
   try { return Object.assign({ feito: {}, notas: {} }, JSON.parse(localStorage.getItem(CHAVE))); }
   catch { return { feito: {}, notas: {} }; }
 }
+function salvarSemProgresso() { localStorage.setItem(CHAVE, JSON.stringify(estado)); }
 function salvar() { localStorage.setItem(CHAVE, JSON.stringify(estado)); atualizarProgresso(); }
 
 const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
@@ -231,6 +232,90 @@ function renderDocumentos() {
     </div>`;
 }
 
+
+// ---------------- Carta de motivação (texto salvo só no navegador)
+let destinoCarta = "maeci";
+const contaPalavras = s => (s.match(/[A-Za-zÀ-ÿ0-9][A-Za-zÀ-ÿ0-9'’-]*/g) || []).length;
+const cartaAtual = () => ((estado.cartas ||= {})[destinoCarta] ||= { texto: "", versoes: [], alvo: "" });
+
+function renderCarta() {
+  const c = cartaAtual();
+  const d = CARTA.destinos.find(x => x.id === destinoCarta);
+  document.getElementById("carta").innerHTML = `
+    <p class="intro">Escreva aqui. <b>O texto fica salvo só neste navegador</b> (não vai para o GitHub); use "Baixar backup" no rodapé para guardar ou levar para outro aparelho.</p>
+    <div class="filtros">${CARTA.destinos.map(x => `<button data-destino="${x.id}" class="${x.id === destinoCarta ? "ativa" : ""}">${esc(x.nome)}</button>`).join("")}</div>
+    <div class="carta-grade">
+      <div class="cartao">
+        <div class="carta-topo">
+          <label>Curso/universidade alvo <input id="carta-alvo" value="${esc(c.alvo)}" placeholder="ex.: Ca' Foscari, QEM"></label>
+          <div id="carta-contador"></div>
+        </div>
+        <textarea id="carta-texto" placeholder="Cole ou escreva sua carta. Separe os parágrafos com uma linha em branco.">${esc(c.texto)}</textarea>
+        <div class="carta-acoes">
+          <button id="carta-salvar-versao">Salvar versão</button>
+          <button id="carta-baixar">Baixar .txt</button>
+          <span class="refe">${c.versoes.length} versão(ões) salva(s)</span>
+        </div>
+        ${c.versoes.length ? `<details class="versoes"><summary>Versões anteriores</summary>
+          ${c.versoes.map((v, i) => `<div class="versao"><span>${esc(v.quando)} · ${v.palavras} palavras</span>
+            <button data-restaurar="${i}">Restaurar</button><button data-apagar-versao="${i}">Apagar</button></div>`).reverse().join("")}
+        </details>` : ""}
+        <div id="carta-analise"></div>
+      </div>
+      <div>
+        <div class="cartao">
+          <h3>Roteiro em 7 blocos (~490 palavras)</h3>
+          <ol class="blocos">${CARTA.blocos.map(b => `<li><b>${esc(b.nome)}</b> <span class="refe">~${b.palavras}</span><br><span class="refe">${esc(b.guia)}</span></li>`).join("")}</ol>
+        </div>
+        <div class="cartao" style="margin-top:12px">
+          <h3>Checklist antes de enviar</h3>
+          <ul class="checklist">${CARTA.checklist.map((x, i) => `<li><label>${check(`ck-${destinoCarta}-${i}`)} ${esc(x)}</label></li>`).join("")}</ul>
+        </div>
+      </div>
+    </div>
+    <h2 class="secao">Treino da entrevista</h2>
+    <div class="cartao">
+      <p class="refe">Responda em voz alta em até 2 minutos; anote aqui os pontos-chave (salvo no navegador).</p>
+      <button id="sortear">Sortear uma pergunta</button> <span id="pergunta-sorteada" class="sorteada"></span>
+      <div class="perguntas">${CARTA.perguntas.map((q, i) => `<details><summary>${esc(q)}</summary>${nota("entrevista-" + i)}</details>`).join("")}</div>
+    </div>`;
+  analisarCarta();
+}
+
+function analisarCarta() {
+  const c = cartaAtual();
+  const d = CARTA.destinos.find(x => x.id === destinoCarta);
+  const n = contaPalavras(c.texto);
+  const lim = d.limite;
+  const cls = !lim ? "" : n > lim ? "acima" : n > lim - 5 ? "limite" : "ok";
+  document.getElementById("carta-contador").innerHTML =
+    `<span class="contador ${cls}"><b>${n}</b>${lim ? ` / ${lim}` : ""} palavras</span>
+     ${lim ? `<span class="mini largo"><span class="${cls}" style="width:${Math.min(100, (n / lim) * 100)}%"></span></span>` : ""}`;
+
+  const paras = c.texto.split(/\n\s*\n|\n/).map(p => p.trim()).filter(p => contaPalavras(p) > 4);
+  const baixo = c.texto.toLowerCase();
+  const cliches = CARTA.cliches.filter(x => baixo.includes(x));
+  const alvo = (c.alvo || "").trim();
+  const contaTermo = re => (c.texto.match(re) || []).length;
+  const italia = contaTermo(/\bital(y|ian|ia|iano|iana)\b/gi);
+  const alvoN = alvo ? alvo.split(/[,;]/).map(s => s.trim()).filter(Boolean)
+    .map(s => [s, contaTermo(new RegExp(s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi"))]) : [];
+
+  document.getElementById("carta-analise").innerHTML = !n ? "" : `
+    <div class="analise">
+      <div><h4>Parágrafos × roteiro</h4>
+        <table><tbody>${paras.map((p, i) => {
+          const b = CARTA.blocos[i]; const w = contaPalavras(p);
+          const fora = b && Math.abs(w - b.palavras) > b.palavras * 0.4;
+          return `<tr><td>§${i + 1}</td><td class="${fora ? "nao" : ""}">${w}</td><td class="refe">${b ? `${esc(b.nome)} (~${b.palavras})` : "bloco extra"}</td></tr>`;
+        }).join("")}</tbody></table></div>
+      <div><h4>Detector de clichês</h4>${cliches.length ? `<p>${cliches.map(x => `<span class="cliche">${esc(x)}</span>`).join(" ")}</p>` : `<p class="vazio">Nenhum da lista. 👍</p>`}
+        <h4>Teste da troca</h4>
+        <p class="refe">Menções a Itália/italiano: <b>${italia}</b>${alvoN.map(([s, k]) => ` · "${esc(s)}": <b class="${k ? "" : "nao"}">${k}</b>`).join("")}
+        ${!alvo ? " · preencha o curso alvo acima" : ""}</p></div>
+    </div>`;
+}
+
 // ---------------- Outras opções
 function renderOutras() {
   const regioes = [...new Set(OUTRAS.map(o => o.regiao))];
@@ -256,7 +341,7 @@ function atualizarProgresso() {
 }
 
 function renderTudo() {
-  renderPainel(); renderCronograma(); renderUniversidades(); renderBolsas(); renderDocumentos(); renderOutras(); atualizarProgresso();
+  renderPainel(); renderCronograma(); renderUniversidades(); renderBolsas(); renderDocumentos(); renderCarta(); renderOutras(); atualizarProgresso();
 }
 
 document.addEventListener("change", e => {
@@ -272,6 +357,8 @@ document.addEventListener("click", e => {
   if (e.target.matches("summary input[type=checkbox]")) e.stopPropagation();
 }, true);
 document.addEventListener("input", e => {
+  if (e.target.id === "carta-texto") { cartaAtual().texto = e.target.value; salvarSemProgresso(); analisarCarta(); return; }
+  if (e.target.id === "carta-alvo") { cartaAtual().alvo = e.target.value; salvarSemProgresso(); analisarCarta(); return; }
   const id = e.target.dataset.nota;
   if (id) { estado.notas[id] = e.target.value; salvar(); }
 });
@@ -289,6 +376,30 @@ document.addEventListener("click", e => {
   if (frente) { filtroCat = frente.dataset.frente; renderCronograma(); irPara("cronograma"); }
   if (t.dataset.ir) { filtroCat = "todas"; renderCronograma(); irPara(t.dataset.ir); }
   if (t.dataset.filtro) { filtroCat = t.dataset.filtro; renderCronograma(); }
+  if (t.dataset.destino) { destinoCarta = t.dataset.destino; renderCarta(); }
+  if (t.id === "carta-salvar-versao") {
+    const c = cartaAtual();
+    c.versoes.push({ quando: new Date().toLocaleString("pt-BR"), texto: c.texto, palavras: contaPalavras(c.texto) });
+    salvarSemProgresso(); renderCarta();
+  }
+  if (t.dataset.restaurar !== undefined) {
+    const c = cartaAtual();
+    if (confirm("Substituir o texto atual por esta versão? (Salve uma versão antes, se quiser guardar o atual.)")) {
+      c.texto = c.versoes[+t.dataset.restaurar].texto; salvarSemProgresso(); renderCarta();
+    }
+  }
+  if (t.dataset.apagarVersao !== undefined && confirm("Apagar esta versão?")) {
+    cartaAtual().versoes.splice(+t.dataset.apagarVersao, 1); salvarSemProgresso(); renderCarta();
+  }
+  if (t.id === "carta-baixar") {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([cartaAtual().texto], { type: "text/plain" }));
+    a.download = `carta-${destinoCarta}-${new Date().toISOString().slice(0, 10)}.txt`; a.click();
+  }
+  if (t.id === "sortear") {
+    const q = CARTA.perguntas[Math.floor(Math.random() * CARTA.perguntas.length)];
+    document.getElementById("pergunta-sorteada").textContent = q;
+  }
   if (t.id === "exportar") {
     const a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([JSON.stringify(estado, null, 2)], { type: "application/json" }));

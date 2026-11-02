@@ -218,7 +218,7 @@ const BOLSAS = [
     valor: "9 meses de bolsa + isenção de taxas + estágio em empresa italiana",
     prazo: "maio (11/05/2026 no último ciclo)",
     quem: "Países da lista (o Brasil está). Mestrado em inglês em Economia, Gestão, Engenharia ou Tecnologia.",
-    atencao: "Graduação concluída antes da inscrição. Na Ca' Foscari, só vale quem entrou nas rodadas 1 ou 2.",
+    atencao: "Graduação concluída antes da inscrição. Na Ca' Foscari, só vale quem entrou nas rodadas 1 ou 2. Documentos (portal oficial): histórico final da graduação com nota, inglês B2, certificado de italiano OU declaração de que vai estudar italiano antes de viajar, vídeo de apresentação de até 59 s (inglês ou italiano), CV e passaporte. Não pede carta de recomendação.",
     link: "https://investyourtalentapplication.esteri.it/",
   },
   {

@@ -83,7 +83,7 @@ const CRONOGRAMA = [
     nota: "Avaliação: mérito acadêmico (até 70) + coerência do currículo com o curso (até 30); mínimo 60/100. As 4 bolsas do departamento (€4.608 cada) vão para os primeiros colocados dos intakes 1 e 2 com nota ≥ 65." },
   { id: "maeci-edital", inicio: "2027-02-15", fim: "2027-02-15", cat: "bolsas", status: "estimado",
     titulo: "MAECI: publicação provável do edital (portal Study in Italy)",
-    nota: "Ler o edital no dia: confirmar se pede carta de recomendação, se o italiano conta ponto e se a graduação precisa estar concluída na inscrição.",
+    nota: "Ler o edital no dia e conferir se algo mudou. Em 2026/27: carta de motivação de até 500 palavras, CV, diploma ou histórico com nota esperada, certificado de língua e 'outros documentos' opcionais (carta de recomendação, carta de admissão). Seleção: análise do mérito acadêmico → entrevista → ranking, feita por comissão da representação italiana.",
     links: [["Study in Italy", "https://studyinitaly.esteri.it/"]] },
 
   // ---- março 2027
@@ -92,12 +92,12 @@ const CRONOGRAMA = [
   { id: "bo-i2-abre", inicio: "2027-03-13", fim: "2027-03-13", cat: "bologna", status: "estimado",
     titulo: "Bologna: abre o intake 2", nota: "2026/27: 13/03 – 13/04/2026, resultado a partir de 04/06." },
   { id: "carta-maeci", inicio: "2027-02-15", fim: "2027-03-15", cat: "docs", status: "estimado",
-    titulo: "Carta de motivação — MAECI", nota: "Explicar por que a Itália, por que o curso e o plano de carreira. Adaptar das cartas das universidades." },
+    titulo: "Carta de motivação — MAECI (máx. 500 palavras)", nota: "O FAQ oficial pede: história pessoal, formação, interesses acadêmicos, por que estudar na Itália e objetivos do projeto de estudo. Tudo o que estiver na carta pode virar pergunta na entrevista." },
   { id: "bo-i1-resultado", fim: "2027-03-23", cat: "bologna", status: "estimado",
     titulo: "Bologna: resultado do intake 1" },
   { id: "maeci-prazo", fim: "2027-03-26", cat: "bolsas", status: "estimado", prazo: true,
     titulo: "MAECI: prazo da bolsa",
-    nota: "2026/27: 26/03/2026, 14h (Itália). Limite de idade: 28 anos para mestrado. Bolsa de 9 meses (€900/mês em 2026/27) + isenção de taxas." },
+    nota: "2026/27: 26/03/2026, 14h (Itália). Limite de idade: 28 anos para mestrado. Bolsa de €10.800 por 9 meses (nov–jul), em 3 parcelas; valor integral só para quem estiver na Itália até 15/11. Quem ainda não se formou pode se candidatar e enviar o diploma até 1º de julho, se ficar no ranking." },
   { id: "cf-video", inicio: "2027-03-01", fim: "2027-03-25", cat: "docs", status: "oficial",
     titulo: "Vídeo motivacional — bolsa Honours da Ca' Foscari", nota: "Faz parte da pontuação, junto com nota (mínimo 85%), cartas e certificado de língua." },
   { id: "cf-honours", fim: "2027-03-31", cat: "bolsas", status: "estimado", prazo: true,
@@ -207,10 +207,10 @@ const UNIVERSIDADES = [
 const BOLSAS = [
   {
     id: "maeci", grupo: "principais", nome: "MAECI — bolsa do governo italiano (portal Study in Italy)",
-    valor: "€900/mês por 9 meses (2026/27) + isenção de taxas; renovável no 2º ano",
+    valor: "€10.800 por 9 meses (≈ €1.200/mês, em 3 parcelas). A isenção de taxas depende da universidade. Renovável no 2º ano",
     prazo: "fim de março (26/03/2026 no último ciclo)",
     quem: "Estrangeiros até 28 anos (mestrado). Curso em inglês: inglês B2. Italiano B2 é exigido para curso em italiano.",
-    atencao: "Confirmar no edital 2027/28: carta de recomendação, se o italiano pontua, e se a graduação já precisa estar concluída (a página da Ca' Foscari diz que sim). Não acumula com International Talents @Unibo.",
+    atencao: "Dá para se candidatar antes de se formar (marca 'documentos integrativos' e envia o diploma até 1º de julho, se ficar no ranking). Carta de motivação de até 500 palavras; carta de recomendação é opcional. Seleção em duas fases: mérito acadêmico, depois entrevista. Não acumula com International Talents @Unibo nem com bolsa regional.",
     link: "https://studyinitaly.esteri.it/",
   },
   {
@@ -280,8 +280,8 @@ const DOCUMENTOS = [
   { id: "d-carta-cf", doc: "Carta de motivação", para: "Ca' Foscari (QEM)", obrig: "obrigatória", ate: "2026-12-15" },
   { id: "d-carta-unito", doc: "Carta de motivação", para: "Turim", obrig: "obrigatória", ate: "2026-12-20" },
   { id: "d-carta-bo", doc: "Carta de motivação", para: "Bologna", obrig: "não pedida em 2026/27 — confirmar", ate: "2027-01-31" },
-  { id: "d-carta-maeci", doc: "Carta de motivação", para: "MAECI", obrig: "obrigatória (confirmar formato)", ate: "2027-03-15" },
-  { id: "d-rec-maeci", doc: "Carta de recomendação", para: "MAECI", obrig: "pode ser do trabalho", ate: "2027-03-15" },
+  { id: "d-carta-maeci", doc: "Carta de motivação (máx. 500 palavras)", para: "MAECI", obrig: "obrigatória", ate: "2027-03-15" },
+  { id: "d-rec-maeci", doc: "Carta de recomendação (do chefe)", para: "MAECI", obrig: "opcional, em 'outros documentos'", ate: "2027-03-15" },
   { id: "d-rec-cf", doc: "Carta(s) de recomendação (1–2) de PROFESSOR", para: "Ca' Foscari — bolsa Honours", obrig: "pontua; só professor", ate: "2027-03-25" },
   { id: "d-rec-bo", doc: "Carta(s) de recomendação (1–2)", para: "Bologna", obrig: "opcional, não pontua; de preferência professor", ate: "2027-02-12" },
   { id: "d-rec-china", doc: "2 cartas de recomendação de PROFESSOR (titular ou associado)", para: "China (CSC, PKU, Fudan, Yenching)", obrig: "obrigatória se for para a China", ate: "2026-11-30" },
@@ -344,7 +344,7 @@ const CARTAS = [
   { id: "c-fudan", destino: "Fudan / Tsinghua (candidatura ao curso)", qtd: "2", deQuem: "Professor associado ou acima (Tsinghua aceita profissional sênior da área)", professor: "obrigatório", obrig: "obrigatória", prazo: "2026-12-10", pedir: "2026-11-10" },
   { id: "c-bologna", destino: "Bologna — Applied Economics and Markets", qtd: "1–2", deQuem: "\"If possible\" professores; o professor recebe um link e envia direto", professor: "preferível", obrig: "opcional, não pontua", prazo: "2027-02-12", pedir: "2027-01-05" },
   { id: "c-cf", destino: "Ca' Foscari — bolsa Honours", qtd: "1–2", deQuem: "Só professores que conheçam você e seu trabalho (empregador não vale)", professor: "obrigatório", obrig: "pontua na bolsa", prazo: "2027-03-31", pedir: "2027-02-15" },
-  { id: "c-maeci", destino: "MAECI", qtd: "1", deQuem: "Pode ser do trabalho", professor: "não precisa", obrig: "confirmar no edital", prazo: "2027-03-26", pedir: "2027-02-10" },
+  { id: "c-maeci", destino: "MAECI", qtd: "1", deQuem: "Pode ser do trabalho", professor: "não precisa", obrig: "opcional, mas conta a favor", prazo: "2027-03-26", pedir: "2027-02-10" },
   { id: "c-qem", destino: "Erasmus Mundus QEM", qtd: "2", deQuem: "O consórcio não especifica; o comum é ao menos uma de professor", professor: "preferível", obrig: "obrigatória", prazo: "2027-02-28", pedir: "2027-01-15", nota: "prazo a confirmar" },
   { id: "c-gks", destino: "Coreia — GKS", qtd: "1", deQuem: "Alguém que avalie sua capacidade acadêmica (na prática, professor)", professor: "preferível", obrig: "obrigatória", prazo: "2027-02-25", pedir: "2027-01-15", nota: "prazo da embaixada a confirmar" },
 ];

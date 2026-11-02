@@ -31,39 +31,100 @@ const links = ls => (ls || []).map(([t, u]) => `<a href="${u}" target="_blank" r
 const tagStatus = s => `<span class="tag ${s}">${s}</span>`;
 
 // ---------------- Painel
+const ORDEM_CATS = ["turim", "veneza", "bologna", "bolsas", "provas", "docs", "visto"];
+const proximoAberto = lista => lista.filter(i => !estado.feito[i.id]).sort((a, b) => data(a.fim) - data(b.fim))[0];
+
 function renderPainel() {
   const abertos = CRONOGRAMA.filter(i => !estado.feito[i.id]).sort((a, b) => data(a.fim) - data(b.fim));
-  const atrasados = abertos.filter(i => dias(i.fim) < 0);
-  const proximos = abertos.filter(i => dias(i.fim) >= 0).slice(0, 8);
-  const prazos = CRONOGRAMA.filter(i => i.prazo && dias(i.fim) >= 0).sort((a, b) => data(a.fim) - data(b.fim)).slice(0, 6);
+  const critico = abertos.find(i => i.prazo && dias(i.fim) >= 0);
+  const baldes = [
+    ["Atrasadas", abertos.filter(i => dias(i.fim) < 0), "atrasado"],
+    ["Esta semana", abertos.filter(i => dias(i.fim) >= 0 && dias(i.fim) <= 7), "urgente"],
+    ["Próximas 4 semanas", abertos.filter(i => dias(i.fim) > 7 && dias(i.fim) <= 30), ""],
+  ];
+  const depois = abertos.filter(i => dias(i.fim) > 30).slice(0, 4);
+  const linha = i => `<li>${check(i.id)}<span class="quando">${fmt(i.fim)}</span>
+      <span class="cat ${i.cat}">${CATS[i.cat]}</span><span class="tit">${esc(i.titulo)}</span>${faltam(i.fim)}</li>`;
 
-  const linha = i => `<li class="${dias(i.fim) < 0 ? "atrasado" : ""}">${check(i.id)}
-      <span class="quando">${fmt(i.fim)}</span> <span class="cat ${i.cat}">${CATS[i.cat]}</span>
-      <span class="tit">${esc(i.titulo)}</span> ${faltam(i.fim)}</li>`;
+  const frentes = ORDEM_CATS.map(c => {
+    const itens = CRONOGRAMA.filter(i => i.cat === c);
+    const f = itens.filter(i => estado.feito[i.id]).length;
+    const prox = proximoAberto(itens);
+    return `<button class="frente ${c}" data-frente="${c}">
+      <span class="frente-nome">${CATS[c]}</span>
+      <span class="frente-num">${f}/${itens.length}</span>
+      <span class="mini"><span style="width:${itens.length ? (f / itens.length) * 100 : 0}%"></span></span>
+      <span class="frente-prox">${prox ? `${fmt(prox.fim)} · ${esc(prox.titulo)}` : "tudo feito"}</span>
+    </button>`;
+  }).join("");
 
   document.getElementById("painel").innerHTML = `
-    <div class="grade2">
+    ${critico ? `<div class="destaque">
+      <div><span class="rotulo">Próximo prazo que não pode passar</span>
+        <strong>${esc(critico.titulo)}</strong>
+        <span class="refe">${fmt(critico.fim)} · ${CATS[critico.cat]} · ${critico.status}</span></div>
+      <div class="contagem"><b>${dias(critico.fim)}</b><span>dias</span></div>
+    </div>` : ""}
+
+    <h2 class="secao">Frentes</h2>
+    <div class="frentes">${frentes}</div>
+
+    <div class="agora">
       <div class="cartao">
-        <h2>Próximas tarefas</h2>
-        ${atrasados.length ? `<p class="alerta">${atrasados.length} tarefa(s) com prazo vencido.</p><ul class="lista">${atrasados.map(linha).join("")}</ul>` : ""}
-        <ul class="lista">${proximos.map(linha).join("")}</ul>
+        <h2>O que fazer nos próximos 30 dias</h2>
+        ${baldes.filter(([, lista]) => lista.length).map(([nome, lista, cls]) => `
+          <h3 class="sub ${cls}">${nome} <span class="qtd">${lista.length}</span></h3>
+          <ul class="lista">${lista.map(linha).join("")}</ul>`).join("") || `<p class="vazio">Nada vencendo nos próximos 30 dias.</p>`}
       </div>
       <div class="cartao">
-        <h2>Prazos que não podem passar</h2>
-        <ul class="lista prazos">${prazos.map(i => `<li><span class="quando">${fmt(i.fim)}</span>
-          <span class="cat ${i.cat}">${CATS[i.cat]}</span> <span class="tit">${esc(i.titulo)}</span> ${faltam(i.fim)}</li>`).join("")}</ul>
-        <h3>Ordem de ataque</h3>
-        <ol class="ordem">
-          <li><b>Inglês</b> (IELTS/TOEFL) até o início de janeiro: Bologna e Turim pedem na candidatura.</li>
-          <li><b>Ca' Foscari na 1ª rodada</b> (meados de jan): libera Honours e Invest Your Talent.</li>
-          <li><b>Turim</b> até o fim de janeiro, com a Talents4UNITO junto.</li>
-          <li><b>Bologna no intake 1</b> (até ~12/fev): concorre às bolsas do departamento.</li>
-          <li><b>GRE</b> até março, para a International Talents @Unibo.</li>
-          <li><b>MAECI</b> no fim de março; <b>Invest Your Talent</b> em maio.</li>
-          <li><b>Documentos de renda</b> (ISEE) de março a maio, para as bolsas regionais de agosto.</li>
-        </ol>
+        <h2>Depois disso</h2>
+        <ul class="lista">${depois.map(linha).join("")}</ul>
+        <button class="link" data-ir="cronograma">Ver cronograma completo →</button>
+      </div>
+    </div>
+
+    <h2 class="secao">Linha do tempo até a matrícula</h2>
+    <div class="cartao">${linhaDoTempo()}</div>`;
+}
+
+// Linha do tempo: barras = janelas e tarefas com duração; losangos = prazos.
+const TL_INI = data("2026-11-01"), TL_FIM = data("2027-09-30");
+const pos = s => Math.max(0, Math.min(100, ((data(s) - TL_INI) / (TL_FIM - TL_INI)) * 100));
+
+function linhaDoTempo() {
+  const meses = [];
+  for (let d = new Date(TL_INI); d <= TL_FIM; d.setMonth(d.getMonth() + 1)) {
+    const s = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-01`;
+    meses.push(`<span class="tl-mes" style="left:${pos(s)}%">${MESES[d.getMonth()]}${d.getMonth() === 0 ? " " + String(d.getFullYear()).slice(2) : ""}</span>`);
+  }
+  const hojeStr = `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, "0")}-${String(hoje.getDate()).padStart(2, "0")}`;
+  const raias = ORDEM_CATS.map(c => {
+    const barras = [
+      ...JANELAS.filter(j => j.cat === c).map(j => ({ nome: j.nome, de: j.de, ate: j.ate, janela: true })),
+    ].sort((a, b) => data(a.de) - data(b.de));
+    // empilha barras que se sobrepõem em linhas diferentes
+    const fins = [];
+    barras.forEach(b => {
+      let r = fins.findIndex(f => data(b.de) > f);
+      if (r < 0) { r = fins.length; fins.push(0); }
+      fins[r] = data(b.ate); b.linha = r;
+    });
+    const nLinhas = Math.max(1, fins.length);
+    const marcos = CRONOGRAMA.filter(i => i.cat === c && i.prazo);
+    return `<div class="tl-raia" style="height:${nLinhas * 26 + 14}px">
+      <span class="tl-nome cat ${c}">${CATS[c]}</span>
+      <div class="tl-trilho">
+        ${barras.map(b => `<span class="tl-barra ${c} ${b.janela ? "" : "fina"} ${b.id && estado.feito[b.id] ? "feito" : ""}"
+          style="left:${pos(b.de)}%;width:${Math.max(0.8, pos(b.ate) - pos(b.de))}%;top:${b.linha * 26 + 6}px"
+          title="${esc(b.nome)}: ${fmt(b.de)} → ${fmt(b.ate)}">${esc(b.nome)}</span>`).join("")}
+        ${marcos.map(m => `<span class="tl-marco ${estado.feito[m.id] ? "feito" : ""}" style="left:${pos(m.fim)}%"
+          title="${esc(m.titulo)} — ${fmt(m.fim)}"></span>`).join("")}
       </div>
     </div>`;
+  }).join("");
+  return `<div class="tl"><div class="tl-escala">${meses.join("")}</div>
+    <div class="tl-corpo">${raias}<span class="tl-hoje" style="left:calc(110px + (100% - 110px) * ${pos(hojeStr) / 100})"><span>hoje</span></span></div></div>
+    <p class="refe">Barras: janelas de candidatura, provas e blocos de documentos. ◆ prazos finais. Passe o mouse para ver detalhes.</p>`;
 }
 
 // ---------------- Cronograma
@@ -78,22 +139,29 @@ function renderCronograma() {
 
   document.getElementById("cronograma").innerHTML = `
     <div class="filtros">
-      ${["todas", ...Object.keys(CATS)].map(c => `<button data-filtro="${c}" class="${c === filtroCat ? "ativa" : ""}">${c === "todas" ? "Tudo" : CATS[c]}</button>`).join("")}
+      ${["todas", ...ORDEM_CATS].map(c => `<button data-filtro="${c}" class="${c === filtroCat ? "ativa" : ""}">${c === "todas" ? "Tudo" : CATS[c]}</button>`).join("")}
       <label><input type="checkbox" id="esconder" ${esconderFeitos ? "checked" : ""}> esconder concluídos</label>
     </div>
+    <p class="refe">Clique numa linha para ver detalhes, fonte e links.</p>
     ${Object.entries(grupos).map(([mes, lista]) => `
       <h2 class="mes">${mes}</h2>
+      <div class="cartao compacto">
       ${lista.map(i => `
-        <article class="item ${estado.feito[i.id] ? "feito" : ""} ${i.prazo ? "prazo" : ""}">
-          <div class="topo">${check(i.id)}
+        <details class="linha ${estado.feito[i.id] ? "feito" : ""} ${i.prazo ? "prazo" : ""}">
+          <summary>${check(i.id)}
             <span class="quando">${i.inicio && i.inicio !== i.fim ? fmt(i.inicio) + " → " : ""}${fmt(i.fim)}</span>
-            <span class="cat ${i.cat}">${CATS[i.cat]}</span> ${tagStatus(i.status)} ${faltam(i.fim, estado.feito[i.id])}
+            <span class="cat ${i.cat}">${CATS[i.cat]}</span>
+            <span class="tit">${i.prazo ? "◆ " : ""}${esc(i.titulo)}</span>
+            ${faltam(i.fim, estado.feito[i.id])}
+          </summary>
+          <div class="detalhe">
+            ${tagStatus(i.status)}
+            ${i.nota ? `<p>${esc(i.nota)}</p>` : ""}
+            ${i.ref ? `<p class="refe">Fonte: ${esc(i.ref)}</p>` : ""}
+            ${i.links ? `<p class="links">${links(i.links)}</p>` : ""}
           </div>
-          <h3>${esc(i.titulo)}</h3>
-          ${i.nota ? `<p>${esc(i.nota)}</p>` : ""}
-          ${i.ref ? `<p class="refe">Fonte: ${esc(i.ref)}</p>` : ""}
-          ${i.links ? `<p class="links">${links(i.links)}</p>` : ""}
-        </article>`).join("")}`).join("")}`;
+        </details>`).join("")}
+      </div>`).join("")}`;
 }
 
 // ---------------- Universidades
@@ -200,17 +268,26 @@ document.addEventListener("change", e => {
       .catch(() => alert("Arquivo inválido."));
   }
 });
+document.addEventListener("click", e => {
+  if (e.target.matches("summary input[type=checkbox]")) e.stopPropagation();
+}, true);
 document.addEventListener("input", e => {
   const id = e.target.dataset.nota;
   if (id) { estado.notas[id] = e.target.value; salvar(); }
 });
+function irPara(aba) {
+  document.querySelectorAll("#abas button, .aba").forEach(el => el.classList.remove("ativa"));
+  document.querySelector(`#abas button[data-aba="${aba}"]`).classList.add("ativa");
+  document.getElementById(aba).classList.add("ativa");
+  history.replaceState(null, "", "#/" + aba);
+  window.scrollTo({ top: 0 });
+}
 document.addEventListener("click", e => {
   const t = e.target;
-  if (t.dataset.aba) {
-    document.querySelectorAll("#abas button, .aba").forEach(el => el.classList.remove("ativa"));
-    t.classList.add("ativa"); document.getElementById(t.dataset.aba).classList.add("ativa");
-    history.replaceState(null, "", "#" + t.dataset.aba);
-  }
+  if (t.dataset.aba) irPara(t.dataset.aba);
+  const frente = t.closest("[data-frente]");
+  if (frente) { filtroCat = frente.dataset.frente; renderCronograma(); irPara("cronograma"); }
+  if (t.dataset.ir) { filtroCat = "todas"; renderCronograma(); irPara(t.dataset.ir); }
   if (t.dataset.filtro) { filtroCat = t.dataset.filtro; renderCronograma(); }
   if (t.id === "exportar") {
     const a = document.createElement("a");
@@ -221,5 +298,5 @@ document.addEventListener("click", e => {
 
 document.getElementById("ref").textContent = `Pesquisa feita em ${fmt(HOJE_REF)}. Início pretendido: ${ALVO.inicio}.`;
 renderTudo();
-const inicial = location.hash.slice(1);
-if (inicial) document.querySelector(`#abas button[data-aba="${inicial}"]`)?.click();
+const inicial = location.hash.replace(/^#\/?/, "");
+if (inicial && document.getElementById(inicial)) irPara(inicial);

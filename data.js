@@ -349,3 +349,27 @@ const CARTAS = [
   { id: "c-gks", destino: "Coreia — GKS", qtd: "1", deQuem: "Alguém que avalie sua capacidade acadêmica (na prática, professor)", professor: "preferível", obrig: "obrigatória", prazo: "2027-02-25", pedir: "2027-01-15", nota: "prazo da embaixada a confirmar" },
 ];
 const SEM_CARTAS = "Não pedem carta: Turim (Economics), admissão da Ca' Foscari (só carta de motivação), bolsa do GRE de Bologna (International Talents), Invest Your Talent (vídeo de 1 min + CV) e bolsas regionais. Talents4UNITO: não consegui ler o edital — confirmar.";
+
+// ---------------------------------------------------------------------------
+// Janelas que aparecem como barras na linha do tempo do painel
+// ---------------------------------------------------------------------------
+const JANELAS = [
+  { cat: "turim", nome: "Turim: candidatura + Talents4UNITO", de: "2026-11-25", ate: "2027-01-29" },
+  { cat: "veneza", nome: "Ca' Foscari: rodada 1", de: "2026-12-17", ate: "2027-01-14" },
+  { cat: "veneza", nome: "Rodada 2", de: "2027-02-04", ate: "2027-03-04" },
+  { cat: "veneza", nome: "Bolsa Honours", de: "2027-03-04", ate: "2027-03-31" },
+  { cat: "bologna", nome: "Bologna: intake 1", de: "2027-01-13", ate: "2027-02-12" },
+  { cat: "bologna", nome: "Intake 2", de: "2027-03-13", ate: "2027-04-13" },
+  { cat: "bolsas", nome: "Bolsa do GRE (Unibo)", de: "2027-01-15", ate: "2027-04-30" },
+  { cat: "bolsas", nome: "MAECI", de: "2027-02-15", ate: "2027-03-26" },
+  { cat: "bolsas", nome: "Invest Your Talent", de: "2027-03-26", ate: "2027-05-11" },
+  { cat: "bolsas", nome: "Bolsa regional", de: "2027-07-10", ate: "2027-08-24" },
+  { cat: "provas", nome: "IELTS/TOEFL", de: "2026-11-15", ate: "2027-01-10" },
+  { cat: "provas", nome: "GRE (1ª tentativa)", de: "2027-01-05", ate: "2027-01-31" },
+  { cat: "provas", nome: "Italiano (CILS/CELI/PLIDA), se der", de: "2027-02-01", ate: "2027-05-31" },
+  { cat: "docs", nome: "Cartas, CV e traduções", de: "2026-11-03", ate: "2026-12-20" },
+  { cat: "docs", nome: "Documentos de renda (ISEE)", de: "2027-02-15", ate: "2027-04-15" },
+  { cat: "docs", nome: "Declaração de valor / CIMEA", de: "2027-04-01", ate: "2027-06-30" },
+  { cat: "visto", nome: "Universitaly (pré-matrícula)", de: "2027-04-01", ate: "2027-07-15" },
+  { cat: "visto", nome: "Visto", de: "2027-07-01", ate: "2027-08-31" },
+];

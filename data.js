@@ -423,7 +423,7 @@ const CARTA = {
     "Que relação você vê entre as economias brasileira e italiana?",
     "Como a política monetária do BCE afeta a Itália de forma diferente da Alemanha?",
     "Como está o seu italiano? Apresente-se em italiano em 30 segundos.",
-    "O que aprendeu no intercâmbio em Coimbra que vai usar na Itália?",
+    "O que aprendeu no intercâmbio que vai usar na Itália?",
     "Se não ganhar a bolsa, como pretende se manter?",
   ],
 };

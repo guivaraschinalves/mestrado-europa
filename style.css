@@ -82,3 +82,5 @@ dt { color: var(--suave); font-weight: 600; } dd { margin: 0; }
 .vou { display: flex; gap: 6px; align-items: center; font-size: .9rem; color: var(--suave); }
 .intro { color: var(--suave); max-width: 900px; }
 .backup button, .botao { border: 1px solid var(--linha); border-radius: 6px; margin-right: 6px; }
+td.prof { font-weight: 600; white-space: nowrap; }
+td.prof.obrigatório { color: var(--vermelho); } td.prof.preferível { color: var(--laranja); } td.prof.não-precisa { color: var(--verde); }

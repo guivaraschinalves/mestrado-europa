@@ -148,6 +148,18 @@ function renderDocumentos() {
         <td>${check(d.id)}</td><td>${esc(d.doc)}</td><td>${esc(d.para)}</td><td>${esc(d.obrig)}</td>
         <td>${fmt(d.ate)} ${faltam(d.ate, estado.feito[d.id])}</td></tr>`).join("")}</tbody></table>
       <p class="intro">Uma boa carta-base em inglês (trajetória, por que economia aplicada/quantitativa, plano de carreira) pode ser adaptada para as 4 cartas. Mude o parágrafo do "por que este curso" em cada uma.</p>
+    </div>
+    <div class="cartao" style="margin-top:16px">
+      <h2>Cartas de recomendação: quem pode escrever e até quando pedir</h2>
+      <p class="intro">Com 2 professores e 1 pessoa do trabalho você cobre tudo. Faça um pedido só para cada professor, com a lista de destinos e prazos abaixo.</p>
+      <table class="docs"><thead><tr><th>Pedida</th><th>Recebida</th><th>Destino</th><th>Quantas</th><th>De quem</th><th>Professor?</th><th>Carta é</th><th>Pedir até</th><th>Prazo</th></tr></thead>
+      <tbody>${[...CARTAS].sort((a, b) => data(a.pedir) - data(b.pedir)).map(c => `<tr class="${estado.feito[c.id + "-ok"] ? "feito" : ""}">
+        <td>${check(c.id)}</td><td>${check(c.id + "-ok")}</td>
+        <td><b>${esc(c.destino)}</b>${c.nota ? `<br><span class="refe">${esc(c.nota)}</span>` : ""}</td>
+        <td>${esc(c.qtd)}</td><td>${esc(c.deQuem)}</td>
+        <td class="prof ${c.professor.replace(/\s/g, "-")}">${esc(c.professor)}</td><td>${esc(c.obrig)}</td>
+        <td>${fmt(c.pedir)} ${faltam(c.pedir, estado.feito[c.id])}</td><td>${fmt(c.prazo)}</td></tr>`).join("")}</tbody></table>
+      <p class="intro">${esc(SEM_CARTAS)}</p>
     </div>`;
 }
 

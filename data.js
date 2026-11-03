@@ -3,7 +3,7 @@
 //         "estimado" = projeção do ciclo 2027/28 a partir do padrão do ano anterior
 // Os ids são a chave do progresso salvo no navegador: não renomeie um id já marcado.
 
-const HOJE_REF = "2026-11-01"; // data da última pesquisa
+const HOJE_REF = "2026-11-03"; // data da última pesquisa
 
 const ALVO = {
   inicio: "setembro/outubro de 2027 (a.a. 2027/28)",
@@ -27,10 +27,21 @@ const CRONOGRAMA = [
   { id: "gre-confirmar", inicio: "2026-11-01", fim: "2026-11-20", cat: "bolsas", status: "estimado",
     titulo: "Mandar e-mail para a Unibo confirmando a bolsa do GRE antes de investir no GRE",
     nota: "Perguntar ao internationaldesk@unibo.it: (1) haverá edição 2027/28 e a faixa de ISEE (€16–35 mil) continua? (2) quem ainda não colou grau pode se candidatar, ou o diploma precisa estar concluído no prazo? (3) como o Analytical Writing (0–6) é somado ao Verbal e ao Quant (130–170) — nota bruta ou normalizada? (4) voltará a haver cotas por região, como as 14 bolsas para a América do Sul em 2024/25? Sobre a renda, a lei já responde: o DPCM de 9/4/2001 (art. 5, c. 7–8) manda aplicar as mesmas regras do ISEE italiano, com o imóvel a €500/m²." },
+  { id: "gre-diagnostico", inicio: "2026-11-03", fim: "2026-11-10", cat: "provas", status: "oficial",
+    titulo: "GRE: fazer um simulado oficial gratuito (POWERPREP) para ver de onde você parte",
+    nota: "Gratuito no site da ETS, com a mesma estrutura da prova (~1h58: 1 redação de 30 min, 2 seções de Verbal e 2 de Quant). Faça cronometrado e sem pausa; anote V, Q e os tipos de questão que mais errou. É o ponto de partida do plano.",
+    links: [["Material gratuito da ETS", "https://www.ets.org/gre/test-takers/general-test/prepare.html"]] },
   { id: "gre-plano", inicio: "2026-11-01", fim: "2026-11-15", cat: "provas", status: "oficial",
-    titulo: "Montar plano de estudo do GRE e agendar a prova",
-    nota: "Para a bolsa International Talents @Unibo: mínimo Verbal+Quant = 290 e Analytical Writing = 3.0; ranking pela soma das 3 seções. Agende com folga para poder refazer.",
-    ref: "Edital 2025/26" },
+    titulo: "GRE: montar o plano de estudo e agendar a 1ª prova (início de janeiro)",
+    nota: "Meta: Quant 165+, Verbal 153–157, Writing 4.0+ (V+Q ≥ 320). O piso da bolsa da Unibo é V+Q ≥ 290 e AW ≥ 3.0, mas o ranking é pela soma. Material: Official GRE Guide (ETS) + um curso barato (GregMat ou Magoosh). Agende em ets.org (em casa ou em centro de prova; nome idêntico ao do passaporte; taxa ~US$ 220–249, conferir). Marcar para o início de janeiro deixa espaço para refazer.",
+    ref: "Edital 2025/26",
+    links: [["Agendar o GRE (ETS)", "https://www.ets.org/gre/test-takers/general-test/register.html"]] },
+  { id: "gre-estudo", inicio: "2026-11-10", fim: "2027-01-04", cat: "provas", status: "oficial",
+    titulo: "GRE: estudar 1 a 1,5 h por dia (8 semanas)",
+    nota: "Verbal: vocabulário todo dia (flashcards no Anki) + interpretação de texto. Quant: exercícios cronometrados e caderno de erros — o conteúdo é de ensino médio, o que derruba é pegadinha e tempo. Writing: 1 redação 'Analyze an Issue' por semana, comparando com as respostas-modelo da ETS." },
+  { id: "gre-simulado2", inicio: "2026-12-14", fim: "2026-12-20", cat: "provas", status: "oficial",
+    titulo: "GRE: 2º simulado POWERPREP para medir o progresso",
+    nota: "Se estiver longe da meta, mantenha a prova de janeiro como 1ª tentativa e já conte com a 2ª. Se estiver na meta, revise só os erros até a prova." },
   { id: "recom-pedir", inicio: "2026-11-03", fim: "2026-11-20", cat: "docs", status: "oficial",
     titulo: "Pedir as cartas de recomendação: 2 professores (um pedido só, cobrindo tudo) + 1 do trabalho para a MAECI",
     nota: "Veja a tabela de cartas na aba Documentos. Os mesmos 2 professores cobrem Ca' Foscari (Honours), Bologna e, se for para a China, CSC/PKU/Fudan/Yenching. Faça um pedido único listando todos os destinos e prazos, e entregue CV, histórico e 3–4 pontos que você gostaria que eles destacassem. Se a China entrar no plano, a primeira carta é para ~30/11." },
@@ -58,10 +69,13 @@ const CRONOGRAMA = [
   { id: "unibo-gre-abre", inicio: "2027-01-15", fim: "2027-01-15", cat: "bolsas", status: "estimado",
     titulo: "Bolsa International Talents @Unibo (GRE): sai o edital",
     nota: "Edições anteriores abriram em 17/01/2025 e 11/01/2026." },
-  { id: "gre-prova", inicio: "2027-01-05", fim: "2027-01-31", cat: "provas", status: "estimado",
+  { id: "gre-prova", inicio: "2027-01-05", fim: "2027-01-20", cat: "provas", status: "estimado",
     titulo: "Fazer o GRE (1ª tentativa)",
-    nota: "Em janeiro dá tempo de citar a nota no formulário de Bologna (intake 1) e ainda de refazer antes do prazo da bolsa (abr/mai). Envie a nota oficial pela ETS com o código 7850 (Unibo)." },
-
+    nota: "Verbal e Quant aparecem na tela no fim (não oficiais); a nota oficial com o Writing sai em ~8–10 dias. No dia da prova, escolha até 4 destinos grátis: inclua a Unibo (código 7850). Com o ScoreSelect você decide depois quais tentativas enviar. A nota vale 5 anos.",
+    links: [["Notas e envio (ETS)", "https://www.ets.org/gre/test-takers/general-test/scores.html"]] },
+  { id: "gre-retake", inicio: "2027-02-01", fim: "2027-04-10", cat: "provas", status: "estimado",
+    titulo: "GRE: 2ª tentativa, se a 1ª ficar abaixo da meta",
+    nota: "Regra da ETS: intervalo mínimo de 21 dias entre provas, até 5 vezes em 12 meses (conferir no boletim atual). Faça até ~10/04 para a nota oficial chegar antes do prazo da bolsa (~30/04). Envie só a melhor tentativa pelo ScoreSelect." },
   // ---- fevereiro 2027
   { id: "cf-r2-abre", inicio: "2027-02-04", fim: "2027-02-04", cat: "veneza", status: "estimado",
     titulo: "Ca' Foscari: abre a 2ª rodada", nota: "2026/27: 04/02 – 04/03/2026." },
@@ -349,7 +363,9 @@ const JANELAS = [
   { cat: "bolsas", nome: "MAECI", de: "2027-02-15", ate: "2027-03-26" },
   { cat: "bolsas", nome: "Invest Your Talent", de: "2027-03-26", ate: "2027-05-11" },
   { cat: "bolsas", nome: "Bolsa regional", de: "2027-07-10", ate: "2027-08-24" },
-  { cat: "provas", nome: "GRE (1ª tentativa)", de: "2027-01-05", ate: "2027-01-31" },
+  { cat: "provas", nome: "Estudo do GRE", de: "2026-11-03", ate: "2027-01-04" },
+  { cat: "provas", nome: "GRE (1ª tentativa)", de: "2027-01-05", ate: "2027-01-20" },
+  { cat: "provas", nome: "GRE: 2ª tentativa, se precisar", de: "2027-02-01", ate: "2027-04-10" },
   { cat: "provas", nome: "Italiano (CILS/CELI/PLIDA), se der", de: "2027-02-01", ate: "2027-05-31" },
   { cat: "docs", nome: "Cartas, CV e traduções", de: "2026-11-03", ate: "2026-12-20" },
   { cat: "docs", nome: "Documentos de renda (ISEE)", de: "2027-02-15", ate: "2027-04-15" },

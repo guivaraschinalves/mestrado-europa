@@ -191,7 +191,7 @@ const UNIVERSIDADES = [
     ],
     exige: [
       "Graduação de 3+ anos; ≥ 1/10 dos créditos em economia e ≥ 1/10 em matemática/estatística",
-      "ADMISSÃO exige nota final ≥ 9/10 do máximo OU departamento no top 12,5% do RePEc. Atenção: média 8,6/10 não atinge o 9/10 e a PUCRS não aparece no ranking de instituições do RePEc — perguntar a UniTo antes de investir na candidatura",
+      "ADMISSÃO exige nota final ≥ 9/10 do máximo OU departamento no top 12,5% do RePEc. Atenção: sua média fica abaixo de 9/10 e a PUCRS não aparece no ranking de instituições do RePEc — perguntar a UniTo antes de investir na candidatura",
       "Inglês B2 na candidatura (IELTS 5.5, TOEFL 69, FCE 173, PTE 65)",
       "Carta de motivação obrigatória",
       "Taxa €60 (única); anuidade até €2.800 (há redução por renda)",

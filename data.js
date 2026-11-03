@@ -21,8 +21,8 @@ const CRONOGRAMA = [
     nota: "É a única chance realista de ter certificado B1/B2 antes do prazo da MAECI (fim de março). Inscrições costumam fechar 1–2 meses antes da prova. Se não der, a próxima janela é fev–jun/2027.",
     links: [["CILS (Siena)", "https://cils.unistrasi.it/"], ["CELI (Perugia)", "https://www.cvcl.it/"], ["PLIDA", "https://plida.dante.global/en"]] },
   { id: "ingles-agendar", inicio: "2026-11-01", fim: "2026-11-15", cat: "provas", status: "oficial",
-    titulo: "Agendar IELTS ou TOEFL (B2 é exigido JÁ na candidatura em Bologna e Turim)",
-    nota: "Mínimos 2026/27 — Bologna: IELTS 5.5 / TOEFL iBT 80. Turim: IELTS 5.5 (nenhuma banda abaixo) / TOEFL 69 (nenhuma seção < 17). Ca' Foscari só pede na matrícula, mas a bolsa Honours pontua o certificado. Mire IELTS 6.5+ / TOEFL 90+. Certificado vale 3 anos.",
+    titulo: "Inglês: TOEFL já feito (jan/2026, vale até jan/2028) — conferir se cobre cada mínimo",
+    nota: "Mínimos: Bologna TOEFL 80; Turim 69 (nenhuma seção < 17); Erasmus Mundus MAPP 95. A PKU HSBC pede 100 na escala antiga — aí não passa. Baixar o relatório oficial e mandar pela ETS onde for exigido.",
     ref: "Editais 2026/27" },
   { id: "gre-confirmar", inicio: "2026-11-01", fim: "2026-11-20", cat: "bolsas", status: "estimado",
     titulo: "Mandar e-mail para a Unibo confirmando a bolsa do GRE antes de investir no GRE",
@@ -55,9 +55,9 @@ const CRONOGRAMA = [
     titulo: "Carta de motivação — Turim (Economics)", nota: "Obrigatória na candidatura." },
 
   // ---- janeiro 2027
-  { id: "ingles-prova", inicio: "2026-12-01", fim: "2027-01-10", cat: "provas", status: "estimado",
-    titulo: "Fazer IELTS/TOEFL e ter o resultado em mãos",
-    nota: "O resultado do IELTS sai em ~3–13 dias e o do TOEFL em ~4–8 dias. Precisa estar pronto para Turim (fim de jan) e Bologna (intake 1, até 12/fev)." },
+  { id: "ingles-prova", inicio: "2026-11-01", fim: "2027-01-10", cat: "provas", status: "oficial",
+    titulo: "Enviar o TOEFL oficial (ETS) para as universidades que exigem",
+    nota: "Bologna e Turim pedem o certificado na candidatura; envie o relatório oficial pela ETS quando a universidade tiver código." },
   { id: "cf-r1-fecha", fim: "2027-01-14", cat: "veneza", status: "estimado", prazo: true,
     titulo: "Ca' Foscari: fecha a 1ª rodada (candidatura + teste online)",
     nota: "Recomendado se candidatar já na 1ª rodada: a bolsa Honours e o Invest Your Talent só aceitam quem entrou nas rodadas 1 ou 2. Em 2026/27 a Ca' Foscari fechou a admissão para quem precisa de visto antes do fim do ciclo: não deixe para o fim. Taxa €30 (vale para até 2 cursos)." },

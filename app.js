@@ -12,7 +12,7 @@ function salvar() { localStorage.setItem(CHAVE, JSON.stringify(estado)); atualiz
 const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
 const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 const MESES_LONGOS = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-const CATS = { provas: "Provas", docs: "Documentos", bologna: "Bologna", veneza: "Veneza", turim: "Turim", bolsas: "Bolsas", visto: "Visto/matrícula" };
+const CATS = { provas: "Provas", docs: "Documentos", bologna: "Bologna", veneza: "Veneza", bonn: "Bonn", bolsas: "Bolsas", visto: "Visto" };
 
 const data = s => { const [a, m, d] = s.split("-").map(Number); return new Date(a, m - 1, d); };
 const fmt = s => { const d = data(s); return `${d.getDate()}/${MESES[d.getMonth()]}/${String(d.getFullYear()).slice(2)}`; };
@@ -32,7 +32,7 @@ const links = ls => (ls || []).map(([t, u]) => `<a href="${u}" target="_blank" r
 const tagStatus = s => `<span class="tag ${s}">${s}</span>`;
 
 // ---------------- Painel
-const ORDEM_CATS = ["turim", "veneza", "bologna", "bolsas", "provas", "docs", "visto"];
+const ORDEM_CATS = ["bologna", "veneza", "bonn", "bolsas", "provas", "docs", "visto"];
 const proximoAberto = lista => lista.filter(i => !estado.feito[i.id]).sort((a, b) => data(a.fim) - data(b.fim))[0];
 
 function renderPainel() {

@@ -1,7 +1,7 @@
 :root {
   --fundo: #f6f5f1; --cartao: #fff; --texto: #1f2328; --suave: #646b73; --linha: #e3e1da;
   --azul: #1d4e89; --verde: #2e7d4f; --vermelho: #b42318; --laranja: #b54708;
-  --bologna: #a3262a; --veneza: #0f6e78; --turim: #6b4fa0; --bolsas: #2e7d4f; --provas: #b54708; --docs: #1d4e89; --visto: #646b73;
+  --bologna: #a3262a; --veneza: #0f6e78; --bonn: #6b4fa0; --bolsas: #2e7d4f; --provas: #b54708; --docs: #1d4e89; --visto: #646b73;
 }
 @media (prefers-color-scheme: dark) {
   :root { --fundo: #15171a; --cartao: #1f2226; --texto: #e7e7e4; --suave: #9aa1a9; --linha: #33373c; --azul: #7fb0ea; }
@@ -44,7 +44,7 @@ nav button.ativa { color: var(--texto); background: var(--cartao); box-shadow: i
 .alerta { color: var(--vermelho); font-weight: 600; }
 
 .cat { font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; padding: 1px 7px; border-radius: 10px; color: #fff; background: var(--suave); }
-.cat.bologna { background: var(--bologna); } .cat.veneza { background: var(--veneza); } .cat.turim { background: var(--turim); }
+.cat.bologna { background: var(--bologna); } .cat.veneza { background: var(--veneza); } .cat.bonn { background: var(--bonn); }
 .cat.bolsas { background: var(--bolsas); } .cat.provas { background: var(--provas); } .cat.docs { background: var(--docs); } .cat.visto { background: var(--visto); }
 .tag { font-size: .7rem; padding: 1px 6px; border-radius: 4px; border: 1px solid; }
 .tag.oficial { color: var(--verde); } .tag.estimado { color: var(--laranja); }
@@ -67,7 +67,7 @@ h2.mes { font-size: 1rem; text-transform: uppercase; letter-spacing: .05em; colo
 input[type=checkbox] { width: 17px; height: 17px; accent-color: var(--verde); cursor: pointer; }
 
 .uni { border-top: 5px solid; }
-.uni.bologna { border-top-color: var(--bologna); } .uni.veneza { border-top-color: var(--veneza); } .uni.turim { border-top-color: var(--turim); }
+.uni.bologna { border-top-color: var(--bologna); } .uni.veneza { border-top-color: var(--veneza); } .uni.bonn { border-top-color: var(--bonn); }
 .curso { font-weight: 600; margin: 0; } .rank { color: var(--suave); margin: 2px 0 0; font-size: .9rem; }
 .uni ul { padding-left: 18px; margin: 0; } .uni li { margin-bottom: 3px; }
 table { width: 100%; border-collapse: collapse; font-size: .9rem; }
@@ -104,7 +104,7 @@ h2.secao { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; c
   border: 1px solid var(--linha); border-top: 4px solid var(--suave); border-radius: 10px; padding: 10px 12px;
   display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; transition: transform .1s, box-shadow .1s; }
 .frente:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,.08); }
-.frente.bologna { border-top-color: var(--bologna); } .frente.veneza { border-top-color: var(--veneza); } .frente.turim { border-top-color: var(--turim); }
+.frente.bologna { border-top-color: var(--bologna); } .frente.veneza { border-top-color: var(--veneza); } .frente.bonn { border-top-color: var(--bonn); }
 .frente.bolsas { border-top-color: var(--bolsas); } .frente.provas { border-top-color: var(--provas); } .frente.docs { border-top-color: var(--docs); } .frente.visto { border-top-color: var(--visto); }
 .frente-nome { font-weight: 700; } .frente-num { color: var(--suave); font-size: .85rem; font-variant-numeric: tabular-nums; }
 .mini { grid-column: 1 / -1; height: 5px; background: var(--linha); border-radius: 3px; overflow: hidden; }
@@ -132,7 +132,7 @@ button.link { font: inherit; background: none; border: 0; color: var(--azul); cu
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: var(--suave); box-sizing: border-box; cursor: default; }
 .tl-barra.fina { opacity: .55; }
 .tl-barra.feito { opacity: .25; text-decoration: line-through; }
-.tl-barra.bologna { background: var(--bologna); } .tl-barra.veneza { background: var(--veneza); } .tl-barra.turim { background: var(--turim); }
+.tl-barra.bologna { background: var(--bologna); } .tl-barra.veneza { background: var(--veneza); } .tl-barra.bonn { background: var(--bonn); }
 .tl-barra.bolsas { background: var(--bolsas); } .tl-barra.provas { background: var(--provas); } .tl-barra.docs { background: var(--docs); } .tl-barra.visto { background: var(--visto); }
 .tl-marco { position: absolute; top: 2px; width: 11px; height: 11px; margin-left: -5px; background: var(--vermelho); transform: rotate(45deg);
   border: 2px solid var(--cartao); z-index: 2; cursor: default; }
@@ -193,3 +193,5 @@ ol.blocos { padding-left: 18px; margin: 0; } ol.blocos li { margin-bottom: 8px; 
 ul.checklist { list-style: none; padding: 0; margin: 0; } ul.checklist li { padding: 4px 0; font-size: .92rem; } ul.checklist label { display: flex; gap: 8px; align-items: flex-start; }
 .sorteada { font-weight: 600; color: var(--azul); margin-left: 8px; }
 .perguntas details { border-bottom: 1px solid var(--linha); padding: 6px 0; } .perguntas summary { cursor: pointer; }
+.frente-nome { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; overflow-wrap: normal; }
+.frente-prox { max-height: 2.7em; line-height: 1.35em; }
